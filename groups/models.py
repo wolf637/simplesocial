@@ -14,7 +14,7 @@ class Group(models.Model):
     slug = models.SlugField(allow_unicode=True, unique=True)
     description = models.TextField(blank=True, default='')
     description_html = models.TextField(editable=False, default='', blank=True)
-    members = models.ManyToManyField(User, through='GroupMemmber')
+    members = models.ManyToManyField(User, through='GroupMember')
 
     def __str__(self):
         return self.name
@@ -26,7 +26,7 @@ class Group(models.Model):
 
     def get_absolute_url(self):
 
-        return reverse('group:single', kwargs={'slug': self.slug})
+        return reverse('groups:single', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['name']
